@@ -11,7 +11,7 @@ let messageHistory = [];
 let isLoading = false;
 
 function initTheme() {
-  const saved = localStorage.getItem('gemini-theme') || 'dark';
+  const saved = localStorage.getItem('gemini-theme') || 'light';
   document.documentElement.setAttribute('data-theme', saved);
 }
 
@@ -32,14 +32,14 @@ clearBtn.addEventListener('click', () => {
   chatBox.innerHTML = `
     <div class="welcome" id="welcome-screen">
       <div class="welcome-card">
-        <div class="welcome-emoji">🤖</div>
-        <h2>Halo! Saya Gemini AI</h2>
-        <p>Asisten AI yang siap membantu menjawab pertanyaan Anda. Pilih topik di bawah atau ketik langsung!</p>
+        <div class="welcome-emoji">🥗</div>
+        <h2>Halo! Saya Healtify</h2>
+        <p>Mentor kesehatan pribadi Anda. Butuh jadwal workout, rencana makan sehat, atau tips pola hidup? Tanya saja!</p>
       </div>
       <div class="chips">
-        <button class="chip" data-message="Ceritakan tentang dirimu">💬 Ceritakan tentang dirimu</button>
-        <button class="chip" data-message="Apa yang bisa kamu lakukan?">🚀 Kemampuanmu?</button>
-        <button class="chip" data-message="Jelaskan tentang AI secara sederhana">🧠 Jelaskan AI</button>
+        <button class="chip" data-message="Berikan menu diet sehat untuk hari ini">🍎 Menu Diet Hari Ini</button>
+        <button class="chip" data-message="Program workout 15 menit di rumah">💪 Workout 15 Menit</button>
+        <button class="chip" data-message="Bagaimana cara memperbaiki pola tidur?">😴 Tips Tidur Nyenyak</button>
       </div>
     </div>
   `;
@@ -103,24 +103,49 @@ async function handleSend() {
 }
 
 function parseMarkdown(text) {
-  let html = text
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
+  let trimmed = text.trim();
+  
+  // Split by double newlines to handle paragraphs
+  let paragraphs = trimmed.split(/\n\n+/);
+  
+  let processedParagraphs = paragraphs.map(p => {
+    let html = p
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
 
-  html = html.replace(/```(\w*)\n([\s\S]*?)```/g, '<pre><code>$2</code></pre>');
+    // Headers (### Header)
+    html = html.replace(/^### (.*$)/gm, '<h3>$1</h3>');
+    html = html.replace(/^## (.*$)/gm, '<h2>$1</h2>');
+    html = html.replace(/^# (.*$)/gm, '<h1>$1</h1>');
 
-  html = html.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
+    // Separators (---)
+    html = html.replace(/^---$/gm, '<hr>');
 
-  html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-  html = html.replace(/__(.+?)__/g, '<strong>$1</strong>');
+    // Lists (* Item)
+    html = html.replace(/^\* (.*$)/gm, '<li>$1</li>');
 
-  html = html.replace(/(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)/g, '<em>$1</em>');
-  html = html.replace(/(?<!_)_(?!_)(.+?)(?<!_)_(?!_)/g, '<em>$1</em>');
+    // Code blocks (```lang\n...```)
+    html = html.replace(/```(\w*)\n([\s\S]*?)```/g, '<pre><code>$2</code></pre>');
 
-  html = html.replace(/\n/g, '<br>');
+    // Inline code (`...`)
+    html = html.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
 
-  return html;
+    // Bold (**...** or __...__)
+    html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+    html = html.replace(/__(.+?)__/g, '<strong>$1</strong>');
+
+    // Italic (*...* or _..._)
+    html = html.replace(/(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)/g, '<em>$1</em>');
+    html = html.replace(/(?<!_)_(?!_)(.+?)(?<!_)_(?!_)/g, '<em>$1</em>');
+
+    // Single line breaks
+    html = html.replace(/\n/g, '<br>');
+
+    return `<div class="msg-p">${html}</div>`;
+  });
+
+  return processedParagraphs.join('');
 }
 
 async function copyToClipboard(text, btn) {

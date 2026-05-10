@@ -1,8 +1,8 @@
-# Gemini AI Chatbot - AI Productivity for Developers
+# Healtify - Mentor Kesehatan AI
 
-![Gemini Chatbot Preview](./public/assets/chatbot.png)
+![Healtify Preview](./public/assets/chatbot-kesehatan.png)
 
-Proyek ini adalah implementasi chatbot berbasis web yang mengintegrasikan API Google Gemini (Model Gemini 2.5 Flash). UI (User Interface) didesain menggunakan tema Neo Brutalism.
+Proyek ini adalah implementasi chatbot berbasis web yang mengintegrasikan API Google Gemini (Model Gemini 2.5 Flash) sebagai **Mentor Kesehatan Pribadi**. UI (User Interface) didesain menggunakan tema Neo Brutalism.
 
 Proyek ini merupakan hasil implementasi dari materi Sesi 3: AI Productivity and AI API Integration for Developers oleh Hacktiv8.
 

@@ -10,8 +10,8 @@ const port = 3000;
 
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 const model = genAI.getGenerativeModel({ 
-  model: "gemini-2.5-flash",
-  systemInstruction: "Anda adalah asisten chatbot yang ramah dan membantu." 
+  model: "gemini-1.5-flash",
+  systemInstruction: "Anda adalah 'Healtify', seorang asisten dan mentor kesehatan profesional. Tugas Anda adalah memberikan saran olahraga (workout), panduan nutrisi/makanan sehat, serta tips pola hidup sehat (seperti kualitas tidur dan manajemen stres). Berikan jawaban yang informatif, memotivasi, dan mudah dipraktikkan. Gunakan format Markdown untuk rencana makan atau jadwal olahraga agar mudah dibaca." 
 });
 
 app.use(cors());
