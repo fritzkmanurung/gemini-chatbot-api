@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gemini AI Chatbot</title>
+  <meta name="description" content="Chatbot AI berbasis Google Gemini dengan desain Neo Brutalism." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="header-brand">
+        <div class="logo-box">✦</div>
+        <div>
+          <h1 class="header-title">Gemini AI</h1>
+          <span class="header-badge">CHATBOT</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="clear-btn" class="btn-brutal btn-small" title="Hapus chat">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+        </button>
+        <button id="theme-toggle" class="btn-brutal btn-small" title="Toggle tema">
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <main class="chat-area" id="chat-area">
+      <div class="chat-container" id="chat-box">
+        <div class="welcome" id="welcome-screen">
+          <div class="welcome-card">
+            <div class="welcome-emoji">🤖</div>
+            <h2>Halo! Saya Gemini AI</h2>
+            <p>Asisten AI yang siap membantu menjawab pertanyaan Anda. Pilih topik di bawah atau ketik langsung!</p>
+          </div>
+          <div class="chips">
+            <button class="chip" data-message="Ceritakan tentang dirimu">💬 Ceritakan tentang dirimu</button>
+            <button class="chip" data-message="Apa yang bisa kamu lakukan?">🚀 Kemampuanmu?</button>
+            <button class="chip" data-message="Jelaskan tentang AI secara sederhana">🧠 Jelaskan AI</button>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer class="input-footer">
+      <form id="chat-form" class="input-form">
+        <input type="text" id="user-input" placeholder="Ketik pesan..." autocomplete="off" required />
+        <button type="submit" id="send-btn" class="btn-send" title="Kirim">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </form>
+      <p class="disclaimer">Gemini bisa membuat kesalahan. Periksa info penting.</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
